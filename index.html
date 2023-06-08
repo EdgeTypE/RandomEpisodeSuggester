@@ -53,14 +53,14 @@
         // Dizi adını almak için
         const seriesName = seriesInput.value;
         // Dizi adını aramak için
-        const seriesResponse = await fetch(`http://api.tvmaze.com/search/shows?q=${seriesName}&apikey=${apiKey}`);
+        const seriesResponse = await fetch(`https://api.tvmaze.com/search/shows?q=${seriesName}&apikey=${apiKey}`);
         const seriesData = await seriesResponse.json();
         // Arama sonucunda en üstteki diziyi almak için
         const series = seriesData[0].show;
         // Dizi id'sini almak için
         const seriesId = series.id;
         // Dizi id'si ile bölümler listesini almak için
-        const episodesResponse = await fetch(`http://api.tvmaze.com/shows/${seriesId}/episodes?apikey=${apiKey}`);
+        const episodesResponse = await fetch(`https://api.tvmaze.com/shows/${seriesId}/episodes?apikey=${apiKey}`);
         const episodesData = await episodesResponse.json();
         // Bölümler listesinden rastgele bir bölüm seçmek için
         const randomIndex = Math.floor(Math.random() * episodesData.length);
