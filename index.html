@@ -32,40 +32,27 @@
             <button id="button" class="btn btn-primary btn-block">Get Suggestion</button>
         </div>
         <div class="result" id="result"></div>
+        <footer style="text-align: center;">
+            <p>This site uses data from <a href="https://www.tvmaze.com/api">TVMaze API</a>.</p>
+        </footer>
     </div>
-
-    <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap CDN -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <script>
-        // HTML'deki elementleri seçmek için
         const seriesInput = document.getElementById("series");
         const button = document.getElementById("button");
         const result = document.getElementById("result");
-
-        // API anahtarınızı buraya yazın
         const apiKey = "EfQPByf-yl43X237d0kht0Pn7DQfJemU";
-
-        // Butona tıklandığında çalışacak fonksiyon
         button.addEventListener("click", async function() {
-        // Dizi adını almak için
         const seriesName = seriesInput.value;
-        // Dizi adını aramak için
         const seriesResponse = await fetch(`https://api.tvmaze.com/search/shows?q=${seriesName}&apikey=${apiKey}`);
         const seriesData = await seriesResponse.json();
-        // Arama sonucunda en üstteki diziyi almak için
         const series = seriesData[0].show;
-        // Dizi id'sini almak için
         const seriesId = series.id;
-        // Dizi id'si ile bölümler listesini almak için
         const episodesResponse = await fetch(`https://api.tvmaze.com/shows/${seriesId}/episodes?apikey=${apiKey}`);
         const episodesData = await episodesResponse.json();
-        // Bölümler listesinden rastgele bir bölüm seçmek için
         const randomIndex = Math.floor(Math.random() * episodesData.length);
         const randomEpisode = episodesData[randomIndex];
-        // Rastgele bölümün bilgilerini göstermek için
         result.innerHTML = `
             <h3>${series.name}</h3>
             <p>Season ${randomEpisode.season}, Episode ${randomEpisode.number}</p>
@@ -74,7 +61,6 @@
             <p>${randomEpisode.summary}</p>
         `;
         });
-
     </script>
 </body>
 </html>
