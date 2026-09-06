@@ -1,0 +1,27 @@
+{
+  "name": "random-episode-suggester",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test:store": "tsc src/lib/store.ts --outDir node_modules/.tmp/store --module esnext --target es2022 --moduleResolution bundler --skipLibCheck && node scripts/store-smoke.mjs",
+    "test:search": "tsc src/lib/tvmaze.ts --outDir node_modules/.tmp/tvmaze --module esnext --target es2022 --moduleResolution bundler --skipLibCheck && node scripts/search-rank-check.mjs"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "fake-indexeddb": "^6.2.5",
+    "svelte": "^5.57.0",
+    "svelte-check": "^4.3.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.2",
+    "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "idb-keyval": "^6.3.0"
+  }
+}
